@@ -48,7 +48,7 @@ public abstract class Storage {
       public final void createTables() {
         try (StorageConnection storageConnection = newConnection()) {
           if (WaveBukkit.getInstance().getConfig().getBoolean("mysql.enable")) {
-            storageConnection.execute("create table if not exists wave_pvp (ID varchar(36) not null, name varchar(30), kills int, deaths int, killstreak int, coins int , xp int , killsfps int , winssumo int , losessumo int , kssumo int , wins1v1 int , deaths1v1 int , ks1v1 int ,  deathsfps int,  primary key (ID))");
+            storageConnection.execute("create table if not exists wave_pvp (ID varchar(36) not null, name varchar(30), kills int, deaths int, killstreak int, coins int , xp int , killsfps int , winssumo int , losessumo int , kssumo int , wins1v1 int , deaths1v1 int , ks1v1 int ,  deathsfps int, passouchallenge int,  primary key (ID))");
           } else {
             storageConnection.execute("create table if not exists wave_pvp (ID varchar(36) not null, name varchar(30) not null, kills int not null, deaths int not null, killstreak int not null, coins int not null, xp int not null, killsfps int not null, winssumo int not null, losessumo int not null, kssumo int not null, wins1v1 int not null, deaths1v1 int not null, ks1v1 int not null,  deathsfps int not null,  primary key (ID))");
             storageConnection.execute("create table if not exists wave_stats (" +

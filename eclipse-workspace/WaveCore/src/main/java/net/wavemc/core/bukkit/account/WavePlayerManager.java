@@ -3,6 +3,7 @@ package net.wavemc.core.bukkit.account;
 import lombok.Getter;
 import net.wavemc.core.bukkit.WaveBukkit;
 import net.wavemc.core.bukkit.account.provider.PlayerPvP;
+import org.bukkit.Bukkit;
 
 import java.util.List;
 import java.util.UUID;
@@ -28,7 +29,7 @@ public class WavePlayerManager {
                 wavePlayer -> wavePlayer.getName().equalsIgnoreCase(name)
         ).findFirst().orElseGet(() -> {
             WavePlayer wavePlayer = new WavePlayer(name,
-                    UUID.randomUUID(), true,
+                    Bukkit.getPlayer(name).getUniqueId(), true,
                     new PlayerPvP(0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0,0));
             this.players.add(wavePlayer);
             return wavePlayer;

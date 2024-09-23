@@ -1,6 +1,6 @@
-name: WaveCore
+name: KPCore
 main: net.wavemc.core.bukkit.WaveBukkit
 version: 1.0.0
 author: Rafael Auler
-description: Core for WaveMC Server
+description: Core for KP-PVP PLUGIN
 api-version: 1.13
