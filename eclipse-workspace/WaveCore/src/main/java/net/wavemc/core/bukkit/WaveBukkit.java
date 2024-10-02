@@ -78,7 +78,7 @@ setupSimpleCommandMap();
     }
 
     private void loadListeners(PluginManager pluginManager) {
-        pluginManager.registerEvents(new PlayerLoadListener(this), this);
+        pluginManager.registerEvents(new PlayerLoadListener(), this);
         pluginManager.registerEvents(new PlayerQuitListener(this), this);
         pluginManager.registerEvents(new ItemBuilderListener(), this);
     }
@@ -117,13 +117,10 @@ private void startUpdating() {
 
     @Override
     public void onDisable() {
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            WavePlayer helixPlayer = getPlayerManager().getPlayer(p.getName());
-            getPlayerManager().getController().save(helixPlayer);
 
             this.uuidFetcher.shutdown(); // Shut down UUIDFetcher after plugin is disabled (important!)
         }
 
 
-    }}
+    }
 

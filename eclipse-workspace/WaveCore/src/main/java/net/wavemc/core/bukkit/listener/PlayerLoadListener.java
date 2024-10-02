@@ -18,31 +18,23 @@ import java.sql.SQLException;
 @AllArgsConstructor
 public class PlayerLoadListener implements Listener {
 
-    private final WaveBukkit plugin;
 
-    @EventHandler
-    public void onLogin(PlayerLoginEvent event) {
 
-        WavePlayer wavePlayer = plugin.getPlayerManager().getPlayer(event.getPlayer().getName());
-        if (wavePlayer.getPvp().getUuid() != event.getPlayer().getUniqueId().toString()) {
-            wavePlayer.getPvp().setUuid(event.getPlayer().getUniqueId().toString());
-        }
-        Wave.getInstance().getExecutorService().submit(() -> {
-            try (StorageConnection storageConnection = plugin.getStorage().newConnection()) {
-                plugin.getPlayerManager().getController().load(wavePlayer, storageConnection);
-            } catch (SQLException exception) {
-                exception.printStackTrace();
-            }
-        });
-    }
 
     @EventHandler(priority = EventPriority.LOW)
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        WavePlayer wavePlayer = plugin.getPlayerManager().getPlayer(player.getName());
+        WavePlayer wavePlayer = WaveBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
         if (wavePlayer.getPvp().getUuid() != event.getPlayer().getUniqueId().toString()) {
             wavePlayer.getPvp().setUuid(event.getPlayer().getUniqueId().toString());
         }
 
+        Wave.getInstance().getExecutorService().submit(() -> {
+            try (StorageConnection storageConnection = WaveBukkit.getInstance().getStorage().newConnection()) {
+                WaveBukkit.getInstance().getPlayerManager().getController().load(wavePlayer, storageConnection);
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
     }
 }

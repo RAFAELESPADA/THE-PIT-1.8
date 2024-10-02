@@ -6,6 +6,7 @@ import net.wavemc.core.bukkit.account.provider.PlayerPvP;
 import org.bukkit.Bukkit;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class WavePlayerManager {
@@ -28,9 +29,7 @@ public class WavePlayerManager {
         return this.players.stream().filter(
                 wavePlayer -> wavePlayer.getName().equalsIgnoreCase(name)
         ).findFirst().orElseGet(() -> {
-            WavePlayer wavePlayer = new WavePlayer(name,
-                    Bukkit.getPlayer(name).getUniqueId(), true,
-                    new PlayerPvP(0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0,0));
+            WavePlayer wavePlayer = new WavePlayer(name, Objects.requireNonNull(Bukkit.getPlayer(name)).getUniqueId(), true, new PlayerPvP(0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 ,0 ,0,0));
             this.players.add(wavePlayer);
             return wavePlayer;
         });

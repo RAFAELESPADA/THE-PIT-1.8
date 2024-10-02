@@ -17,8 +17,8 @@
         </plugins>
     </build>
     <groupId>org.penisgrande</groupId>
-    <artifactId>WaveCore</artifactId>
-    <version>v1.0.0</version>
+    <artifactId>KP-CORE</artifactId>
+    <version>v3.0.0</version>
     <repositories>
         <repository>
             <id>spigot-repo</id>
