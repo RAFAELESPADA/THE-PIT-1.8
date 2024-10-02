@@ -28,6 +28,7 @@ public class PlayerLoadListener implements Listener {
         if (wavePlayer.getPvp().getUuid() != event.getPlayer().getUniqueId().toString()) {
             wavePlayer.getPvp().setUuid(event.getPlayer().getUniqueId().toString());
         }
+<<<<<<< HEAD
 
         Wave.getInstance().getExecutorService().submit(() -> {
             try (StorageConnection storageConnection = WaveBukkit.getInstance().getStorage().newConnection()) {
@@ -37,4 +38,24 @@ public class PlayerLoadListener implements Listener {
             }
         });
     }
+=======
+        
+    }
+
+    @EventHandler(priority = EventPriority.LOW)
+    public void onJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        WavePlayer wavePlayer = plugin.getPlayerManager().getPlayer(player.getName());
+        if (wavePlayer.getPvp().getUuid() != event.getPlayer().getUniqueId().toString()) {
+            wavePlayer.getPvp().setUuid(event.getPlayer().getUniqueId().toString());
+        }
+Wave.getInstance().getExecutorService().submit(() -> {
+            try (StorageConnection storageConnection = plugin.getStorage().newConnection()) {
+                plugin.getPlayerManager().getController().load(wavePlayer, storageConnection);
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+>>>>>>> 5dd6987e39d0468094c8d94de57a6b3eaada86e4
 }
