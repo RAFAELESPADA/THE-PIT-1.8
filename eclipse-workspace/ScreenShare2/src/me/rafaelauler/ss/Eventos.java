@@ -3,7 +3,12 @@ package me.rafaelauler.ss;
 
 
 	import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.inventory.ItemStack;
 
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.event.EventBus;
@@ -12,7 +17,7 @@ import net.luckperms.api.node.Node;
 import net.luckperms.api.node.NodeType;
 
 
-	public class Eventos {
+	public class Eventos implements Listener {
 	    private final BukkitMain plugin;
 	    private final LuckPerms luckPerms;
 
@@ -26,6 +31,24 @@ import net.luckperms.api.node.NodeType;
 	        eventBus.subscribe(this.plugin, NodeAddEvent.class, this::onNodeAdd);
 	    }
 	
+
+	    @EventHandler
+	    public void event(org.bukkit.event.player.PlayerInteractEvent e) {
+	        Player p = e.getPlayer();
+	        if (!Bukkit.getServer().getName().equals("Prison")) {
+	        	return;
+	        }
+	        if(!p.isSneaking()) return;
+	        if(e.getAction() != Action.RIGHT_CLICK_AIR && e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
+	        ItemStack item = p.getInventory().getItemInMainHand();
+	        if(item == null) return;
+	        Material t = item.getType(); // type of item
+	        if(t == Material.DIAMOND_PICKAXE || t == Material.IRON_PICKAXE) {
+	        p.performCommand("dm open upgrades");
+
+	        }
+	    }
+	       
 
     public void onNodeAdd(NodeAddEvent e) {
         // Check if the event was acting on a User

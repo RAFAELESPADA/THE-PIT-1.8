@@ -105,7 +105,6 @@ public class PlayerListener implements Listener {
 
           ev.setCancelled(true);
           ev.setCancelServer(kickTo);
-              ev.getPlayer().sendMessage(ChatColor.GREEN + "Retornado ao lobby principal porque o servidor que você estava foi reiniciado");  
          
          
       } 

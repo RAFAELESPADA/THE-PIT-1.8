@@ -8,8 +8,8 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/area de trabalho 1 (1)/NOVO SLADE V2/BUNGEECORD/server.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/lombok.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/REDEFAINT/LOBBY 1.20/plugins/LuckPerms-Bukkit-5.4.119.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/REDEFAINT/RANKUP ANA/plugins/TAB.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/LuckPerms-Bukkit-5.4.134.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/TAB v4.1.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/spigot-api-1.19.4-R0.1-20230531.075921-84.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

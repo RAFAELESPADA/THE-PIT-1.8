@@ -38,19 +38,6 @@ registerEvents();
 if (MCVersion.get().isInferior(MCVersion.v1_13)) {
     channel2 = "bungee:teleport"; 
 }
-new org.bukkit.scheduler.BukkitRunnable() {
-	
-	@Override
-	public void run() {
-		for (Player cao : Bukkit.getOnlinePlayers()) {
-			if (cao.getWorld().getName().equals("Eventos")) {
-				darEfeito(cao, PotionEffectType.NIGHT_VISION, 5, 1);
-			}
-		}
-		
-	}
-}.runTaskTimer(this, 0, 1 * 1L);
-    
 
 this.luckPerms = getServer().getServicesManager().load(LuckPerms.class);
   Bukkit.getMessenger().registerOutgoingPluginChannel(this, channel2);
@@ -60,6 +47,8 @@ this.luckPerms = getServer().getServicesManager().load(LuckPerms.class);
   new Eventos(this, this.luckPerms).register();
 
   getCommand("tag").setExecutor(new TagCommand());
+
+  getCommand("pickencantar").setExecutor(new Enchant(this, this.luckPerms));
   getCommand("set-prefix").setExecutor(new SetPrefix(this, this.luckPerms));
     }
     @Override
@@ -73,6 +62,7 @@ this.luckPerms = getServer().getServicesManager().load(LuckPerms.class);
     	PluginManager pm = Bukkit.getPluginManager();
     	Bukkit.getConsoleSender().sendMessage("[REPORT] EVENTOS INICIANDO");
     	pm.registerEvents(new PlayerJoin(this), this);
+    	pm.registerEvents(new Eventos(this, this.luckPerms), this);
     }
 
 public static void darEfeito(Player p, PotionEffectType tipo, int duracao, int level)

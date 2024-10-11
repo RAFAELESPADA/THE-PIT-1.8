@@ -1,15 +1,19 @@
 package net.helix.core.util;
 
-import net.helix.core.bukkit.api.ActionBar;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class HelixCooldown2 {
 
@@ -120,8 +124,6 @@ public class HelixCooldown2 {
                         continue;
                     }
                     it.remove();
-                    ActionBar.sendActionBar(player, "");
-                    player.playSound(player.getLocation(), Sound.LEVEL_UP, 1F, 1F);
                     CooldownFinishEvent e = new CooldownFinishEvent(player, cooldown);
                     Bukkit.getServer().getPluginManager().callEvent(e);
                 }
@@ -158,6 +160,5 @@ public class HelixCooldown2 {
             bar.append("§c§l:");
 
         String name = cooldown.getName();
-        ActionBar.sendActionBar(player, name + " " + bar.toString() + "§f " + StringUtils.toMillis(cooldown.getRemaining()));
     }
 }

@@ -11,12 +11,12 @@ import net.md_5.bungee.api.plugin.Command;
 public class HG extends Command {
 	public static boolean COPADESATIVADA;
   public HG() {
-    super("hg", null, new String[] { "scrim" });
+    super("minikombo", null, new String[] { "scrim" });
   }
   
   
   public void execute(CommandSender commandSender, String[] args) {
-  ServerInfo target = ProxyServer.getInstance().getServerInfo("hg");
+  ServerInfo target = ProxyServer.getInstance().getServerInfo("evento");
   if (target == null) {
 	  commandSender.sendMessage("§cServer Invalido");
 	return;

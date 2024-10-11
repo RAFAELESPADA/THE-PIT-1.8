@@ -76,7 +76,7 @@ if (!Bukkit.getPluginManager().isPluginEnabled("TAB")) {
     sender.sendMessage("§cEsse comando está desativado nesta parte do servidor.");
     return true;
      }
-        if (!player.hasPermission("ydiscordhook." + args[0])) {
+        if (!player.hasPermission("tag." + args[0])) {
             player.sendMessage("§cVocê não tem essa tag ou ela não existe.");
             return true;
         }

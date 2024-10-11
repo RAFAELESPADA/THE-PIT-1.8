@@ -7,7 +7,7 @@ import net.md_5.bungee.api.plugin.Command;
 
 public class OpenHG extends Command {
   public OpenHG() {
-    super("openhg", null, new String[] { "abrihg" });
+    super("openevento", null, new String[] { "abrirevento" });
   }
 	public static boolean istoggled = false;
 	
@@ -15,7 +15,7 @@ public class OpenHG extends Command {
     ProxiedPlayer p = (ProxiedPlayer)sender;
     if (!(sender instanceof ProxiedPlayer))
       p.sendMessage("Apenas jogadores podem fazer isto."); 
-    if (p.hasPermission("tag.admin")) {
+    if (p.hasPermission("kombo.cmd.evento")) {
       if (!istoggled) {
         istoggled = true;
         p.sendMessage("SALA ABERTA");

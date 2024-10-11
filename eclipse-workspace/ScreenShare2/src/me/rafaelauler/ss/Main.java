@@ -140,8 +140,6 @@ instance = this;
 	    	   getProxy().getPluginManager().registerListener(this, new PlayerListener(this));
 	    	    getProxy().getPluginManager().registerCommand(this, new ReloadCommand(this));
 	    	    getProxy().getPluginManager().registerCommand(this, new TempoGrupo());
-
-		    	 pluginManager.registerCommand(this, new StaffChat(this));
 	    	 pluginManager.registerCommand(this, new BSudo());
 	    	 pluginManager.registerCommand(this, new BTP());
 	    	 pluginManager.registerCommand(this, new PingCommand());
@@ -149,6 +147,8 @@ instance = this;
 	    	 pluginManager.registerCommand(this, new Report());
 	    	 pluginManager.registerCommand(this, new Grupo());
 	    	 pluginManager.registerCommand(this, new ToggleFake());
+
+	    	 pluginManager.registerCommand(this, new StaffChat(this));
 	    	 pluginManager.registerCommand(this, new HG());
 	    	 pluginManager.registerCommand(this, new OpenHG());
 	    	 getLogger().info("IP da Host: " + getIpLocalHost());
