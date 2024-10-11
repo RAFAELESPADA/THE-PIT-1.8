@@ -63,7 +63,7 @@ public class Script extends Thread implements Listener
 	 public static final String default_ban_source = "Server";
 
 	 public static final int default_lag_spawn_amount = 5000;
-
+//edcv 
 	 /* Enchantment Settings */
 
 	 // Enchant level for "dangerous" enchants (Fortune, Looting)
