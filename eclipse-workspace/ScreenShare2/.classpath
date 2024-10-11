@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
@@ -11,5 +11,6 @@
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/LuckPerms-Bukkit-5.4.134.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/TAB v4.1.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/spigot-api-1.19.4-R0.1-20230531.075921-84.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/craftbukkit-1.21.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

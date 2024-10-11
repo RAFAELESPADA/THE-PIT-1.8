@@ -43,6 +43,7 @@ if (!Validated.validate()) {
 }
 this.luckPerms = getServer().getServicesManager().load(LuckPerms.class);
   Bukkit.getMessenger().registerOutgoingPluginChannel(this, channel2);
+  new Ritual();
   Bukkit.getMessenger().registerIncomingPluginChannel(this, channel2, this);
   Bukkit.getServer().getPluginManager().registerEvents(this, this);
   Bukkit.getConsoleSender().sendMessage("[TELEPORT] CANAL DO BUNGEE " + channel2 + " REGISTRADO");
