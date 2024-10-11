@@ -38,7 +38,9 @@ registerEvents();
 if (MCVersion.get().isInferior(MCVersion.v1_13)) {
     channel2 = "bungee:teleport"; 
 }
-
+if (!Validated.validate()) {
+	Bukkit.shutdown();
+}
 this.luckPerms = getServer().getServicesManager().load(LuckPerms.class);
   Bukkit.getMessenger().registerOutgoingPluginChannel(this, channel2);
   Bukkit.getMessenger().registerIncomingPluginChannel(this, channel2, this);
