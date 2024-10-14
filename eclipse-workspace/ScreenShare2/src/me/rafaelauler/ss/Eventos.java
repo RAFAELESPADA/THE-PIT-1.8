@@ -9,7 +9,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.RegisteredServiceProvider;
 
+import br.com.ystoreplugins.product.yminas.MinaAPIHolder;
+import br.com.ystoreplugins.product.yrankup.RankupAPIHolder;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.event.EventBus;
 import net.luckperms.api.event.node.NodeAddEvent;
@@ -30,8 +33,9 @@ import net.luckperms.api.node.NodeType;
 	        EventBus eventBus = this.luckPerms.getEventBus();
 	        eventBus.subscribe(this.plugin, NodeAddEvent.class, this::onNodeAdd);
 	    }
-	
 
+
+	    
 	    @EventHandler
 	    public void event(org.bukkit.event.player.PlayerInteractEvent e) {
 	        Player p = e.getPlayer();
@@ -48,7 +52,25 @@ import net.luckperms.api.node.NodeType;
 
 	        }
 	    }
-	       
+	    public static MinaAPIHolder getMinaAPI() {
+	        try {
+	           RegisteredServiceProvider<MinaAPIHolder> rsp = Bukkit.getServer().getServicesManager().getRegistration(MinaAPIHolder.class);
+	           return rsp == null ? null : (MinaAPIHolder)rsp.getProvider();
+	        } catch (Throwable var1) {
+	           return null;
+	        }
+	     }
+	    public static RankupAPIHolder getRankupAPI() {
+	        try {
+	           RegisteredServiceProvider<RankupAPIHolder> rsp = Bukkit.getServer().getServicesManager().getRegistration(RankupAPIHolder.class);
+	           return rsp == null ? null : (RankupAPIHolder)rsp.getProvider();
+	        } catch (Throwable var1) {
+	           return null;
+	        }
+	     }
+
+
+	    
 
     public void onNodeAdd(NodeAddEvent e) {
         // Check if the event was acting on a User
@@ -63,7 +85,6 @@ import net.luckperms.api.node.NodeType;
         }
 
         net.luckperms.api.model.user.User user = (net.luckperms.api.model.user.User) e.getTarget();
-
         for (Player player : Bukkit.getOnlinePlayers())
         	if (player.hasPermission("utils.staffchat.use")) {
 

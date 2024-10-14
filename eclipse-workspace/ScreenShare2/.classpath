@@ -12,5 +12,8 @@
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/TAB v4.1.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/spigot-api-1.19.4-R0.1-20230531.075921-84.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/craftbukkit-1.21.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/KOMBOPVP SW E SURVIVAL E PRISON E PVP E SKYBLOCK/RANKUP ORIENTAL/plugins/yPlugins (9).jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/KOMBOPVP SW E SURVIVAL E PRISON E PVP E SKYBLOCK/RANKUP ORIENTAL/plugins/AuraSkills-2.2.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/KOMBOPVP SW E SURVIVAL E PRISON E PVP E SKYBLOCK/RANKUP ORIENTAL/plugins/yPoints-2.3.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
