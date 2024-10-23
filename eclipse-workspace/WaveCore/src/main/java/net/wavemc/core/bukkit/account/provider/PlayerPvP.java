@@ -63,18 +63,17 @@ private String uuid;
         setThepitkills(getThepitkills() + kills);
     }
     public void addthepitdeaths(int kills) {
-        setThepitkills(getThepitdeaths() + kills);
+        setThepitdeaths(getThepitdeaths() + kills);
     }
     public void addthepitstreak(int kills) {
-        setThepitkills(getThepitstreak() + kills);
+        setThepitstreak(getThepitstreak() + kills);
     }
     public void addthepitxp(int kills) {
-        setThepitkills(getThepitxp() + kills);
+        setThepitxp(getThepitxp() + kills);
     }
     public void addgold(int kills) {
-        setThepitkills(getGold() + kills);
+        setGold(getGold() + kills);
     }
-
     public void addKillstreak(int killstreak) {
         setKillstreak(getKillstreak() + killstreak);
     }
