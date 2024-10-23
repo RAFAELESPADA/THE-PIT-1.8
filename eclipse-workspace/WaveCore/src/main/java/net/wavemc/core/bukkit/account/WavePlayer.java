@@ -39,7 +39,7 @@ public class WavePlayer {
 
 
     public PlayerPvP getPvp() {
-        return pvp != null ? pvp : (pvp = new PlayerPvP(0, 0, 0, 0, 0, 0 , 0  ,0 ,0 ,0 ,0 ,0 ,0 ,0));
+        return pvp != null ? pvp : (pvp = new PlayerPvP(0, 0, 0, 0, 0, 0 , 0  ,0 ,0 ,0 ,0 ,0 ,0 ,0, 0 ,0 ,0, 0, 0));
     }
 
 

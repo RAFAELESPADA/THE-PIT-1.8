@@ -9,10 +9,10 @@ import java.util.UUID;
 @AllArgsConstructor @Data
 public class PlayerPvP {
 
-    private int kills, deaths, killstreak, coins , killsfps , deathsfps , winssumo , deathssumo , winstreaksumo , winsx1, deathsx1 , winstreakx1 , xp, passouchallenge;
+    private int kills, deaths, killstreak, coins , killsfps , deathsfps , winssumo , deathssumo , winstreaksumo , winsx1, deathsx1 , winstreakx1 , xp, passouchallenge, thepitkills, thepitdeaths, thepitstreak, gold, thepitxp;
 private String uuid;
 
-    public PlayerPvP(int kills, int deaths, int killstreak, int coins, int killsfps, int deathsfps, int winssumo, int deathssumo, int winstreaksumo, int winsx1, int deathsx1, int winstreakx1, int xp, int passouchallenge) {
+    public PlayerPvP(int kills, int deaths, int killstreak, int coins, int killsfps, int deathsfps, int winssumo, int deathssumo, int winstreaksumo, int winsx1, int deathsx1, int winstreakx1, int xp, int passouchallenge, int thepitkills, int thepitdeaths, int thepitstreak, int gold, int thepitxp) {
     }
 
     public void addKills(int kills) {
@@ -59,7 +59,21 @@ private String uuid;
     public void adddeathsX1(int deaths)  {
         setDeathsx1(getDeathsx1() + deaths);
     }
-
+    public void addthepitkills(int kills) {
+        setThepitkills(getThepitkills() + kills);
+    }
+    public void addthepitdeaths(int kills) {
+        setThepitkills(getThepitdeaths() + kills);
+    }
+    public void addthepitstreak(int kills) {
+        setThepitkills(getThepitstreak() + kills);
+    }
+    public void addthepitxp(int kills) {
+        setThepitkills(getThepitxp() + kills);
+    }
+    public void addgold(int kills) {
+        setThepitkills(getGold() + kills);
+    }
 
     public void addKillstreak(int killstreak) {
         setKillstreak(getKillstreak() + killstreak);
