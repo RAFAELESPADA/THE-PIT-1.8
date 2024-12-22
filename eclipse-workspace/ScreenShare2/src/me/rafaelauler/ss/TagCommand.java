@@ -2,11 +2,10 @@ package me.rafaelauler.ss;
 
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -16,51 +15,54 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.neznamy.tab.api.TabAPI;
-import me.neznamy.tab.api.tablist.SortingManager;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
-import net.luckperms.api.model.group.Group;
 import net.luckperms.api.model.user.User;
 import net.luckperms.api.node.Node;
 import net.luckperms.api.node.NodeType;
 import net.luckperms.api.node.types.PrefixNode;
 import net.luckperms.api.query.QueryOptions;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 
 public class TagCommand implements CommandExecutor {
 
 	Map<String, Long> cooldowns = new HashMap<String, Long>();
 
 	  public static HashMap<Player , String> tagatual = new HashMap();
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
             return true;
         }
         
-        if (Bukkit.getPluginManager().isPluginEnabled("TAB")) {
-       SortingManager S =  TabAPI.getInstance().getSortingManager();
-        }
+       
         LuckPerms api = LuckPermsProvider.get();
        
         Player player = (Player) sender;
-        Set<Group> groups = api.getGroupManager().getLoadedGroups();
         if (args.length == 0) {
-        	List<String> groupsList = new ArrayList<>();
 
-            StringBuilder tags = new StringBuilder();
-            PlayerGroup[] values;
-            for (int length = (values = PlayerGroup.values()).length, i = 0; i < length; ++i) {
-                final PlayerGroup tag2 = values[i];
-                if (player.hasPermission(tag2.getPermission())) {
-                    tags.append((tags.length() == 0) ? "" : "§f, ").append(tag2.getColor()).append(tag2.getName().replace("plus", "+"));
-                }
-            }
-            player.sendMessage("§aSuas tags disponíveis são: " + tags);
+           
+            TextComponent finalComponent = new TextComponent(ChatColor.GREEN + "As suas tags disponíveis são: ");
+            List<PlayerGroup> rolesAvaliable = (List<PlayerGroup>)PlayerGroup.getRoles().stream().filter(role -> (player.hasPermission(role.getPermission()) || role.getPermission().isEmpty())).collect(Collectors.toList());
+            for (int i = 0; i < rolesAvaliable.size(); i++) {
+              PlayerGroup role = rolesAvaliable.get(i);
+              TextComponent component = new TextComponent();
+              component.setText(StringUtils.formatColors(role.getName().replace("plus", "+")));
+              component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText("" + role.getColoredName().replace("plus", "+") + player.getName())));
+              component.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tag " + StringUtils.stripColors(role.getName().replace("plus", "+"))));
+              if (i != rolesAvaliable.size() - 1)
+                component.addExtra((BaseComponent)new TextComponent("§f, ")); 
+              finalComponent.addExtra((BaseComponent)component);
+            } 
+            finalComponent.addExtra((BaseComponent)new TextComponent("§f."));
+            player.spigot().sendMessage((BaseComponent)finalComponent);
+            return true;
+          } 
         	
-        	
-    
-        	return true;
-        }
 
 
         	
@@ -72,10 +74,7 @@ Player p = (Player)sender;
             
         
 
-if (!Bukkit.getPluginManager().isPluginEnabled("TAB")) {
-    sender.sendMessage("§cEsse comando está desativado nesta parte do servidor.");
-    return true;
-     }
+
         if (!player.hasPermission("tag." + args[0])) {
             player.sendMessage("§cVocê não tem essa tag ou ela não existe.");
             return true;

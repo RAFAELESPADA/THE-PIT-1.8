@@ -1,16 +1,23 @@
-name: FaintLPUtils
-author: zEnderX5_ , Rafael Auler
+name: ServerController
+author: Ebenezer7
 main: me.rafaelauler.ss.BukkitMain
 version: 1.0
-loadbefore: [KPCore]
-depend: [AuraSkills]
+loadbefore: [KPCore, ProtocolLib]
 commands:
-  membro:
   set-prefix:
   tag:
   pickencantar:
   report:
   adquirirvip:
+  modo:
+  sudo:
+  consolesudo:
+  manutencao:
+  ctag:
+  dano:
+  
+  
+  
   
   
   

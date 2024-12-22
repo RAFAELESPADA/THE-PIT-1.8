@@ -72,7 +72,7 @@ if (targetPlayer == sender) {
        o.sendTitle(t.title(TextComponent.fromLegacyText(ChatColor.GREEN + args[0] + " se tornou")).subTitle(TextComponent.fromLegacyText(group.getCachedData().getMetaData().getPrefix().replace("&", "§"))).stay(200));
     });
     if ((targetPlayer = ProxyServer.getInstance().getPlayer(target)) != null) {
-      targetPlayer.sendMessage(ChatColor.RED + "Seu grupo foi atualizado para " + args[1]); 
+      targetPlayer.sendMessage(ChatColor.RED + "Seu grupo foi atualizado para " + args[1] + " por " + sender.getName()); 
     sender.sendMessage(ChatColor.RED + "Você atualizou o grupo de " + target + " para " + args[1] + " !");
     return;
   }

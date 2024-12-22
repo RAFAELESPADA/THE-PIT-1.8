@@ -3,21 +3,33 @@ package me.rafaelauler.ss;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
+import com.comphenix.protocol.events.ListenerPriority;
+import com.comphenix.protocol.events.PacketAdapter;
+import com.comphenix.protocol.events.PacketContainer;
+import com.comphenix.protocol.events.PacketEvent;
+import com.comphenix.protocol.events.PacketListener;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 
@@ -40,8 +52,17 @@ public class BukkitMain extends JavaPlugin implements PluginMessageListener, Lis
     private LuckPerms luckPerms;
     
     public static AuraSkillsBukkit getSkillsAPI() {
+    	if (Bukkit.getPluginManager().isPluginEnabled("AuraSkills")) {
     	AuraSkillsBukkit auraSkillsBukkit = AuraSkillsBukkit.get();
     	return auraSkillsBukkit;
+    }
+    return null;	
+    }
+
+    public String ifNullEmpty(String check) {
+      if (check == null)
+        return ""; 
+      return check;
     }
     @Override
     public void onEnable() {
@@ -50,12 +71,30 @@ registerEvents();
 if (MCVersion.get().isInferior(MCVersion.v1_13)) {
     channel2 = "bungee:teleport"; 
 }
-if (!Validated.validate()) {
-	Bukkit.shutdown();
-}
+final ProtocolManager manager = ProtocolLibrary.getProtocolManager();
+manager.addPacketListener((PacketListener)new PacketAdapter((Plugin)this, ListenerPriority.NORMAL, new PacketType[] { PacketType.Play.Client.TAB_COMPLETE }) {
+      public void onPacketReceiving(PacketEvent event) {
+        if (event.getPacketType() == PacketType.Play.Client.TAB_COMPLETE) {
+        	if (event.getPlayer().hasPermission("kombo.cmd.evento")) {
+        		return;
+        	}
+          event.setCancelled(true);
+          String full = ((String)event.getPacket().getStrings().read(0)).replace("  ", " ");
+          String[] slices = full.split(" ");
+          String complete = (full.charAt(full.length() - 1) == ' ') ? "" : slices[slices.length - 1];
+          String start = ifNullEmpty(complete);
+          PacketContainer fakeComplete = manager.createPacket(PacketType.Play.Server.TAB_COMPLETE);
+          List<String> online = (List<String>)Bukkit.getOnlinePlayers().stream().map(OfflinePlayer::getName).filter(s -> s.toLowerCase().startsWith(start.toLowerCase())).collect(Collectors.toList());
+          String[] players = new String[online.size()];
+          for (int i = 0; i < online.size(); i++)
+            players[i] = online.get(i); 
+          fakeComplete.getStringArrays().write(0, players);
+          manager.sendServerPacket(event.getPlayer(), fakeComplete); 
+        } 
+      }
+    });
 this.luckPerms = getServer().getServicesManager().load(LuckPerms.class);
   Bukkit.getMessenger().registerOutgoingPluginChannel(this, channel2);
-  new Ritual();
   Bukkit.getMessenger().registerIncomingPluginChannel(this, channel2, this);
   Bukkit.getServer().getPluginManager().registerEvents(this, this);
   Bukkit.getConsoleSender().sendMessage("[TELEPORT] CANAL DO BUNGEE " + channel2 + " REGISTRADO");
@@ -63,7 +102,12 @@ this.luckPerms = getServer().getServicesManager().load(LuckPerms.class);
   getCommand("tag").setExecutor(new TagCommand());
   getCommand("report").setExecutor(new ReportCMD());
   getCommand("adquirirvip").setExecutor(new AdquirirVip());
-
+  getCommand("modo").setExecutor(new Modo());
+  getCommand("sudo").setExecutor(new Sudo());
+  getCommand("dano").setExecutor(new Dano());
+  getCommand("manutencao").setExecutor(new Manutencao(this, this.luckPerms));
+  getCommand("ctag").setExecutor(new cTag(this, this.luckPerms));
+  getCommand("consolesudo").setExecutor(new Sudo());
   getCommand("pickencantar").setExecutor(new Enchant(this, this.luckPerms));
   getCommand("set-prefix").setExecutor(new SetPrefix(this, this.luckPerms));
     }
@@ -88,6 +132,9 @@ public static void darEfeito(Player p, PotionEffectType tipo, int duracao, int l
 /*     */   }
 @EventHandler    
 public void onNodggg(BlockBreakEvent e) {
+	if (!Bukkit.getServer().getName().equals("Rankup")) {
+    	return;
+    }
 	if (!(e.getBlock().getType().toString().contains("_ORE") || e.getBlock().getType().toString().contains("STONE") || e.getBlock().getType().equals(Material.PRISMARINE))) {	
 	
 	return;
@@ -137,6 +184,9 @@ public void onNodggg(BlockBreakEvent e) {
 	}
 @EventHandler
 public void event(XpGainEvent e) {
+	if (!Bukkit.getServer().getName().equals("Rankup")) {
+    	return;
+    }
     if (!(e.getPlayer().getWorld().equals(Bukkit.getWorld("world")))) {
 		return;
     }

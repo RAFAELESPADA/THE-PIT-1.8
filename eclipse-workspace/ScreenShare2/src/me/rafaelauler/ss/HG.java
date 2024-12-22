@@ -15,7 +15,8 @@ public class HG extends Command {
   }
   
   
-  public void execute(CommandSender commandSender, String[] args) {
+  @SuppressWarnings("deprecation")
+public void execute(CommandSender commandSender, String[] args) {
   ServerInfo target = ProxyServer.getInstance().getServerInfo("evento");
   if (target == null) {
 	  commandSender.sendMessage("§cServer Invalido");

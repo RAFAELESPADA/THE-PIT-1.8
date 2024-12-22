@@ -75,7 +75,31 @@ instance = this;
 			      } 
 			  }
 
+		  public void acMandarMsg(ProxiedPlayer p, String message) {
+			    for (ProxiedPlayer player : getProxy().getPlayers()) {
+			      if (!player.hasPermission("tag.gerente") || 
+			        player == null)
+			        continue; 
+			      player.sendMessage((BaseComponent)new TextComponent("§3[AdminChat] §7" + p.getName() + "§d: §f" +  message));
+			      } 
+			  }
+
 		    
+		    
+		  @EventHandler
+		  public void onChaat(ChatEvent e) {
+		    ProxiedPlayer p = (ProxiedPlayer)e.getSender();
+		    if (AdminChat.sc.contains(p.getName().toLowerCase()) && p.hasPermission("tag.gerente") && 
+		      !e.getMessage().startsWith("/")) {
+		      for (ProxiedPlayer player : getProxy().getPlayers()) {
+		        if (!player.hasPermission("tag.gerente") || 
+		          player == null)
+		          continue; 
+		        player.sendMessage((BaseComponent)new TextComponent("§3[AdminChat] §7" + p.getName() + "§d: §f" +  e.getMessage()));
+		      } 
+		      e.setCancelled(true);
+		    } 
+		  }		    
 		    
 		  @EventHandler
 		  public void onChat(ChatEvent e) {
@@ -125,7 +149,7 @@ instance = this;
 	      ServerPing ping = event.getResponse();
 	      ServerPing.Players current = ping.getPlayers();
 	      Players players = ping.getPlayers();
-	      players.setOnline(current.getOnline() + 4 + r.nextInt(25));
+	      players.setOnline(current.getOnline() + 7 + r.nextInt(25));
 	      ping.setPlayers(players);
 	      event.setResponse( ping );
 	  }
@@ -145,9 +169,11 @@ instance = this;
 	    	 pluginManager.registerCommand(this, new PingCommand());
 	    	 pluginManager.registerCommand(this, new ListarUsuarios());
 	    	 pluginManager.registerCommand(this, new Report());
+	    	 pluginManager.registerCommand(this, new TAviso());
 	    	 pluginManager.registerCommand(this, new Grupo());
 	    	 pluginManager.registerCommand(this, new ToggleFake());
-
+	    	 pluginManager.registerCommand(this, new DemoteAllStaff());
+	    	 pluginManager.registerCommand(this, new AdminChat(this));
 	    	 pluginManager.registerCommand(this, new StaffChat(this));
 	    	 pluginManager.registerCommand(this, new HG());
 	    	 pluginManager.registerCommand(this, new OpenHG());

@@ -54,9 +54,10 @@ if (targetPlayer == sender) {
 	
 }
     }
-    Integer dias = Integer.valueOf(args[2]);
     
     try {
+    	Integer dias = Integer.valueOf(args[2]);
+        
     ProxyServer.getInstance().getPluginManager().dispatchCommand(ProxyServer.getInstance().getConsole(), "lpb user " + target + " parent clear");
     ProxyServer.getInstance().getPluginManager().dispatchCommand(ProxyServer.getInstance().getConsole(), "lpb user " + target + " parent addtemp " + args[1] + " " + dias + "d server=global");
 
@@ -76,7 +77,7 @@ if (targetPlayer == sender) {
         o.sendTitle(t.title(TextComponent.fromLegacyText(ChatColor.GREEN + args[0] + " se tornou")).subTitle(TextComponent.fromLegacyText(group.getCachedData().getMetaData().getPrefix().replace("&", "§"))).stay(200));
      });
     if ((targetPlayer = ProxyServer.getInstance().getPlayer(target)) != null) {
-      targetPlayer.sendMessage(ChatColor.RED + "Seu grupo foi atualizado para " + args[1] + " Duração: " + dias + " Dias."); 
+      targetPlayer.sendMessage(ChatColor.RED + "Seu grupo foi atualizado para " + args[1] + " Duração: " + dias + " Dias." + " Atualizado pelo staff: " + sender.getName() + " !"); 
     sender.sendMessage(ChatColor.RED + "Você atualizou o grupo de " + target + " para " + args[1] + " !");
     return;
   }
