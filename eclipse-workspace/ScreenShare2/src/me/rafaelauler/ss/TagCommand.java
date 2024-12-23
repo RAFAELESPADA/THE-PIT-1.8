@@ -51,8 +51,8 @@ public class TagCommand implements CommandExecutor {
             for (int i = 0; i < rolesAvaliable.size(); i++) {
               PlayerGroup role = rolesAvaliable.get(i);
               TextComponent component = new TextComponent();
-              component.setText(StringUtils.formatColors(role.getName().replace("plus", "+")));
-              component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText("" + role.getColoredName().replace("plus", "+") + player.getName())));
+              component.setText(StringUtils.formatColors(role.getColoredName().replace("plus", "+")));
+              component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(" [" + role.getColoredName().replace("plus", "+") + "] " + player.getName())));
               component.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tag " + StringUtils.stripColors(role.getName().replace("plus", "+"))));
               if (i != rolesAvaliable.size() - 1)
                 component.addExtra((BaseComponent)new TextComponent("§f, ")); 

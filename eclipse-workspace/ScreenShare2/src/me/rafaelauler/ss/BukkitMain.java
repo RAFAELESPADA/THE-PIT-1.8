@@ -87,6 +87,11 @@ manager.addPacketListener((PacketListener)new PacketAdapter((Plugin)this, Listen
         } 
       }
     });
+if (PlayerGroup.getRoles().isEmpty()) {
+	for (PlayerGroup v : PlayerGroup.values()) {
+    PlayerGroup.getRoles().add(v);
+    }
+
 this.luckPerms = getServer().getServicesManager().load(LuckPerms.class);
   Bukkit.getMessenger().registerOutgoingPluginChannel(this, channel2);
   Bukkit.getMessenger().registerIncomingPluginChannel(this, channel2, this);
@@ -104,6 +109,7 @@ this.luckPerms = getServer().getServicesManager().load(LuckPerms.class);
   getCommand("consolesudo").setExecutor(new Sudo());
   getCommand("pickencantar").setExecutor(new Enchant(this, this.luckPerms));
   getCommand("set-prefix").setExecutor(new SetPrefix(this, this.luckPerms));
+    }
     }
     @Override
     public void onDisable() {
