@@ -2,7 +2,9 @@ name: ServerController
 author: Ebenezer7
 main: me.rafaelauler.ss.BukkitMain
 version: 1.0
-loadbefore: [KPCore, ProtocolLib]
+loadbefore: [KPCore]
+depend: [ProtocolLib]
+softdepend: [AuraSkills, yPlugins]
 commands:
   set-prefix:
   tag:

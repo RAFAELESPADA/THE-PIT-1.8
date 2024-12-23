@@ -17,6 +17,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 import org.bukkit.potion.PotionEffect;
@@ -33,8 +34,7 @@ import com.comphenix.protocol.events.PacketListener;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 
-import dev.aurelium.auraskills.api.AuraSkillsBukkit;
-import dev.aurelium.auraskills.api.event.skill.XpGainEvent;
+import br.com.ystoreplugins.product.yrankup.RankupAPIHolder;
 import net.luckperms.api.LuckPerms;
 import net.md_5.bungee.api.ChatColor;
 
@@ -51,13 +51,7 @@ public class BukkitMain extends JavaPlugin implements PluginMessageListener, Lis
     private static String channel2 = "BungeeTeleport";
     private LuckPerms luckPerms;
     
-    public static AuraSkillsBukkit getSkillsAPI() {
-    	if (Bukkit.getPluginManager().isPluginEnabled("AuraSkills")) {
-    	AuraSkillsBukkit auraSkillsBukkit = AuraSkillsBukkit.get();
-    	return auraSkillsBukkit;
-    }
-    return null;	
-    }
+    
 
     public String ifNullEmpty(String check) {
       if (check == null)
@@ -122,6 +116,9 @@ this.luckPerms = getServer().getServicesManager().load(LuckPerms.class);
     	PluginManager pm = Bukkit.getPluginManager();
     	Bukkit.getConsoleSender().sendMessage("[REPORT] EVENTOS INICIANDO");
     	pm.registerEvents(new PlayerJoin(this), this);
+    	if (Bukkit.getPluginManager().isPluginEnabled("AuraSkills")) {
+    	pm.registerEvents(new AuraListener(), this);
+    	}
      	
     	pm.registerEvents(new Eventos(this, this.luckPerms), this);
     }
@@ -146,14 +143,16 @@ public void onNodggg(BlockBreakEvent e) {
 
 /*  46 */         Random rand = new Random();
 /*  47 */         int percent = rand.nextInt(100);
+RankupAPIHolder rsp = (RankupAPIHolder) Bukkit.getServer().getServicesManager().getRegistration(RankupAPIHolder.class);
+rsp = (RankupAPIHolder)((RegisteredServiceProvider<RankupAPIHolder>) rsp).getProvider();
 
 /*  47 */         float percent2 = rand.nextFloat(100);
 /*  48 */         if (percent <= 20) {
-		Eventos.getRankupAPI().addFragmentos(e.getPlayer(), 4);	  
-		
+	
+		rsp.addFragmentos(e.getPlayer(), 4);	  
 }
 /*  48 */         if (percent <= 1) {
-	Eventos.getRankupAPI().addFragmentos(e.getPlayer(), 15);	  
+	rsp.addFragmentos(e.getPlayer(), 15);	  
 	e.getPlayer().sendMessage(ChatColor.YELLOW + "Você recebeu muitos fragmentos minerando.");
 }
 
@@ -182,18 +181,8 @@ public void onNodggg(BlockBreakEvent e) {
 	e.getPlayer().sendMessage(ChatColor.YELLOW + "Você recebeu uma bomba larga");
 	}
 	}
-@EventHandler
-public void event(XpGainEvent e) {
-	if (!Bukkit.getServer().getName().equals("Rankup")) {
-    	return;
-    }
-    if (!(e.getPlayer().getWorld().equals(Bukkit.getWorld("world")))) {
-		return;
-    }
-    if (e.getPlayer().getLocation().getX() > 8000) {
-	e.setCancelled(true);
-}
-}
+
+	
     public void onPluginMessageReceived(String channel, Player player, byte[] message) {
         if (!channel.equals("bungee:teleportp4")) {
           return; 
