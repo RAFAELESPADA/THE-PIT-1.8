@@ -1,7 +1,0 @@
-name: Core
-main: net.helix.core.bungee.HelixBungee
-version: 1.0.0
-author: zEnderX5_ , Rafael Auler
-description: helixmc.com
-depend: [LuckPerms]
-softdepend: [LiteBans]
