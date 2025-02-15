@@ -1,6 +1,0 @@
-name: WaveCore
-main: net.wavemc.core.bukkit.WaveBukkit
-version: 1.0.0
-author: Rafael Auler
-description: Core for WaveMC Server
-api-version: 1.13
