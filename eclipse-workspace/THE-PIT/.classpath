@@ -8,11 +8,11 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/lombok.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/eclipse-workspace/WaveCore/target/KP-CORE-v3.5.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/spigot-api-1.21-R0.1-20240729.211617-83-shaded.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/KOMBO-BACKUP-TOTAL/RANKUP ORIENTAL/plugins/ajLeaderboards-2.9.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/KOMBO-BACKUP-TOTAL/RANKUP ORIENTAL/plugins/LuckPerms-Bukkit-5.4.141.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/KOMBO-BACKUP-TOTAL/RANKUP ORIENTAL/plugins/DecentHolograms-2.8.11.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/KOMBO-BACKUP-TOTAL/RANKUP ORIENTAL/plugins/PlaceholderAPI-2.11.6 (1).jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/KOMBO-BACKUP-TOTAL/RANKUP ORIENTAL/plugins/Vault.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/spigot-api-1.12.2-R0.1-20180712.012057-156.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

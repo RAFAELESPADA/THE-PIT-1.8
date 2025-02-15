@@ -36,7 +36,7 @@ public class StatusGUI implements Listener {
     @EventHandler
     private void onPlayerInteract(PlayerInteractAtEntityEvent event) {
         Player player = event.getPlayer();
-        if (player.getItemInHand().getType().equals(Material.PLAYER_HEAD)) {
+        if (player.getItemInHand().getType().equals(Material.SKULL)) {
             if (event.getRightClicked().getType() == EntityType.ARMOR_STAND)
                 event.setCancelled(true);
         }
@@ -132,8 +132,8 @@ public class StatusGUI implements Listener {
     }
         inv.setItem(4, editItemStack(getPlayerSkull(player.getName()), BukkitMain.messages.getString("StatusGuiInformation").replace("&", "§"), Arrays.asList("§fNick: §a" + player.getName(), "§fUUID: §a" + player.getUniqueId(), "§fCoins: §a" + new DecimalFormat("###,###.##").format(Coins.getCoins(player)), BukkitMain.messages.getString("StatusGuiFirstAcess").replace("&", "§") + " §a" + new SimpleDateFormat("dd/MM/yyyy HH:mm").format(player.getFirstPlayed()))));
         inv.setItem(10, getCustomItemStack(Material.DIAMOND_SWORD, BukkitMain.messages.getString("StatusGuiPlayerStats").replace("&", "§"), Arrays.asList("§fKills: §a" + AntiDeathDrop.GetKills(player), "§fDeaths: §a" + AntiDeathDrop.GetDeaths(player), "§fKDR: §a" + String.format("%.2f",kdr),"§fKillstreak: §a" + ks)));
-        inv.setItem(13, getCustomItemStack(Material.ENDER_EYE, BukkitMain.messages.getString("StatusGuiBoosters").replace("&", "§"), Arrays.asList("§fXP Boost: §a" + (player.hasPermission("kitpvp.doublexp") ? "Yes" : "No"), "§fCoins Boost: §a" + (player.hasPermission("kitpvp.doublecoins") ? BukkitMain.messages.getString("StatusGuiYes").replace("&", "§") : BukkitMain.messages.getString("StatusGuiNo").replace("&", "§")))));
-        inv.setItem(16, getCustomItemStack(Material.EXPERIENCE_BOTTLE, BukkitMain.messages.getString("StatusGuiLevel").replace("&", "§"), Arrays.asList("§fLevel: §7(" + "§6§lLEVEL" + "§7) §b" + Level.getLevel(player), "§fNext Level: §b" + (Level.getLevel(player) + 1), "§fXP Necessary to Next Level: §b" + Level.getXPToLevelUp(player) + "XP")));
+        inv.setItem(13, getCustomItemStack(Material.EYE_OF_ENDER, BukkitMain.messages.getString("StatusGuiBoosters").replace("&", "§"), Arrays.asList("§fXP Boost: §a" + (player.hasPermission("kitpvp.doublexp") ? "Yes" : "No"), "§fCoins Boost: §a" + (player.hasPermission("kitpvp.doublecoins") ? BukkitMain.messages.getString("StatusGuiYes").replace("&", "§") : BukkitMain.messages.getString("StatusGuiNo").replace("&", "§")))));
+        inv.setItem(16, getCustomItemStack(Material.EXP_BOTTLE, BukkitMain.messages.getString("StatusGuiLevel").replace("&", "§"), Arrays.asList("§fLevel: §7(" + "§6§lLEVEL" + "§7) §b" + Level.getLevel(player), "§fNext Level: §b" + (Level.getLevel(player) + 1), "§fXP Necessary to Next Level: §b" + Level.getXPToLevelUp(player) + "XP")));
         inv.setItem(22, getCustomItemStack(Material.DIAMOND_AXE, "§6Display status in chat", Arrays.asList(BukkitMain.messages.getString("StatusGuiYourStatsLore").replace("&", "§"))));
         target.openInventory(inv);
     }
@@ -147,7 +147,7 @@ public class StatusGUI implements Listener {
     }
 
     public static ItemStack getPlayerSkull(String name) {
-        ItemStack itemStack = new ItemStack(Material.PLAYER_HEAD);
+        ItemStack itemStack = new ItemStack(Material.SKULL);
         SkullMeta meta = (SkullMeta) itemStack.getItemMeta();
         meta.setOwner(name);
         itemStack.setItemMeta(meta);

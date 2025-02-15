@@ -25,7 +25,7 @@ public class Shop
     createButton(Material.DIAMOND_SWORD, 1, shop, 11, "§6Diamond Sword", BukkitMain.messages.getString("ShopPriceLore").replace("&", "§") + " 200g");
     createButton(Material.IRON_HELMET, 1, shop, 12, "§6Iron Helmet", BukkitMain.messages.getString("ShopPriceLore").replace("&", "§") + " 250g");
     createButton(Material.DIAMOND_LEGGINGS, 1, shop, 13, "§6Diamond Leggings", BukkitMain.messages.getString("ShopPriceLore").replace("&", "§") + " 350g");
-    createButton(Material.ENCHANTED_GOLDEN_APPLE, 1, shop, 14, "§6Enchanted Golden Apple", BukkitMain.messages.getString("ShopPriceLore").replace("&", "§") + " 1200g");
+    createButton(Material.GOLDEN_APPLE, 1, shop, 14, "§6Enchanted Golden Apple", BukkitMain.messages.getString("ShopPriceLore").replace("&", "§") + " 1200g");
     
   }
   
@@ -81,11 +81,11 @@ if (e.getClickedInventory() == null) {
     return;
   }
 
-  if ((clicked.getType() == Material.ENCHANTED_GOLDEN_APPLE)) {
+  if ((clicked.getType() == Material.GOLDEN_APPLE)) {
 	  	
 	    if (Coins.getCoins(p) >= 1200)
 	    {
-		      p.getInventory().addItem(new ItemStack(Material.ENCHANTED_GOLDEN_APPLE));
+		      p.getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE));
 	      Coins.removeCoins(p, 1200);
 	      e.setCancelled(true);
 	      return;

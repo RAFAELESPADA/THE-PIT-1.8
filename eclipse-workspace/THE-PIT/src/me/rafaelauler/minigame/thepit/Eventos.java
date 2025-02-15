@@ -247,7 +247,7 @@ import me.RafaelAulerDeMeloAraujo.TitleAPI.TitleAPI;
 		  {
 			  Player p = e.getPlayer();
 			  if ((e.getAction() == Action.RIGHT_CLICK_BLOCK) && (e.getClickedBlock() != null) && (
-				      (e.getClickedBlock().getType() == Material.OAK_SIGN) || (e.getClickedBlock().getType() == Material.OAK_WALL_SIGN)))
+				      (e.getClickedBlock().getType() == Material.SIGN) || (e.getClickedBlock().getType() == Material.WALL_SIGN)))
 				    {
 				      Sign s = (Sign)e.getClickedBlock().getState();
 				      String[] lines = s.getLines();
@@ -278,7 +278,7 @@ import me.RafaelAulerDeMeloAraujo.TitleAPI.TitleAPI;
 		  {
 			  Player p = e.getPlayer();
 			  if ((e.getAction() == Action.RIGHT_CLICK_BLOCK) && (e.getClickedBlock() != null) && (
-					  (e.getClickedBlock().getType() == Material.OAK_SIGN) || (e.getClickedBlock().getType() == Material.OAK_WALL_SIGN)))
+					  (e.getClickedBlock().getType() == Material.SIGN) || (e.getClickedBlock().getType() == Material.WALL_SIGN)))
 				    {
 				      Sign s = (Sign)e.getClickedBlock().getState();
 				      String[] lines = s.getLines();
@@ -421,7 +421,7 @@ p.teleport(lobby);
 		        	return;
 		        }
 		        final Material material1 = Material.getMaterial(item1.getType().toString());
-		        if (!material1.isBlock() && (!(material1 == Material.LEATHER_LEGGINGS)) && (!(material1 == Material.LEATHER_HELMET)) && (!(material1 == Material.IRON_HELMET)) && (!(material1 == Material.IRON_CHESTPLATE)) && (!(material1 == Material.IRON_BOOTS)) && (!(material1 == Material.IRON_LEGGINGS)) && (!(material1 == Material.LEATHER_BOOTS)) && (!(material1 == Material.GOLDEN_CHESTPLATE	        	)) && (!(material1 == Material.GOLDEN_HELMET)) && (!(material1 == Material.CHAINMAIL_CHESTPLATE)) && (!(material1 == Material.CHAINMAIL_HELMET)) && (!(material1 == Material.CHAINMAIL_BOOTS)) && (!(material1 == Material.CHAINMAIL_LEGGINGS)) && material1.getMaxDurability() >= 1 && item1.getDurability() != 0) {
+		        if (!material1.isBlock() && (!(material1 == Material.LEATHER_LEGGINGS)) && (!(material1 == Material.LEATHER_HELMET)) && (!(material1 == Material.IRON_HELMET)) && (!(material1 == Material.IRON_CHESTPLATE)) && (!(material1 == Material.IRON_BOOTS)) && (!(material1 == Material.IRON_LEGGINGS)) && (!(material1 == Material.LEATHER_BOOTS)) && (!(material1 == Material.GOLD_CHESTPLATE	        	)) && (!(material1 == Material.GOLD_HELMET)) && (!(material1 == Material.CHAINMAIL_CHESTPLATE)) && (!(material1 == Material.CHAINMAIL_HELMET)) && (!(material1 == Material.CHAINMAIL_BOOTS)) && (!(material1 == Material.CHAINMAIL_LEGGINGS)) && material1.getMaxDurability() >= 1 && item1.getDurability() != 0) {
 		            p.getItemInHand().setDurability((short)0);
 		            p.updateInventory();
 		        }
