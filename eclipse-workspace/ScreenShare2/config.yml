@@ -1,8 +1,0 @@
-message: "%kickmsg%"
-servername: "lobby"
-servername2: "skywars-lobby"
-servername3: "bedwars-lobby"
-mode: whitelist
-list:
-- ban
-- kick
